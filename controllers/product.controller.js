@@ -24,9 +24,7 @@ module.exports = {
       }
     }
 
-    const { title, description, price, category } = request.body
-
-    const result = await productService.create({ title, description, price, category })
+    const result = await productService.create(request.body)
 
     return response.status(201).json(result)
   },
@@ -40,9 +38,8 @@ module.exports = {
     }
 
     const { id } = request.params
-    const { title, description, price, category } = request.body
 
-    const result = await productService.update(id, { title, description, price, category })
+    const result = await productService.update(id, request.body)
 
     return response.status(200).json(result)
   },

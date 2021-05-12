@@ -17,6 +17,7 @@
   },
   "scripts": {
     "start:dev": "nodemon app.js",
+    "start:gendoc": "node swagger.js",
     "test": "jest --passWithNoTests --runInBand --no-cache",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
@@ -28,6 +29,8 @@
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.8",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "swagger-autogen": "^2.8.1",
+    "swagger-ui-express": "^4.1.6"
   }
 }

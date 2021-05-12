@@ -2,6 +2,9 @@ require('dotenv/config')
 
 const express = require('express')
 
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
 const mongooseConfig = require('./config/mongoose.config')
 
 const categoryRoute = require('./routes/category.route')
@@ -19,6 +22,10 @@ class App {
 
   middlewares () {
     this.express.use(express.json())
+    this.express.use('/api-docs', (req, res, next) => {
+      swaggerFile.host = req.get('host')
+      next()
+    }, swaggerUi.serve, swaggerUi.setup(swaggerFile))
   }
 
   database () {
@@ -26,8 +33,8 @@ class App {
   }
 
   routes () {
-    this.express.use('/products', productRoute)
-    this.express.use('/categories', categoryRoute)
+    this.express.use(productRoute)
+    this.express.use(categoryRoute)
   }
 
   start () {

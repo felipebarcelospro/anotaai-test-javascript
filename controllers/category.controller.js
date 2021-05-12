@@ -10,9 +10,7 @@ module.exports = {
       }
     }
 
-    const { title } = request.body
-
-    const result = await categoryService.create({ title })
+    const result = await categoryService.create(request.body)
 
     return response.status(201).json(result)
   },
@@ -26,9 +24,8 @@ module.exports = {
     }
 
     const { id } = request.params
-    const { title } = request.body
 
-    const result = await categoryService.update(id, { title })
+    const result = await categoryService.update(id, request.body)
 
     return response.status(200).json(result)
   }
